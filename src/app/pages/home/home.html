@@ -1,0 +1,15 @@
+<section class="home">
+  <h2>Listado de Series</h2>
+  <div class="series-grid">
+    @for (serie of series(); track serie.id) {
+      <div class="serie-card">
+        @if (serie.image) {
+          <img [src]="serie.image" [alt]="serie.title" />
+        }
+        <h3>{{ serie.title }}</h3>
+        <p><strong>Canal:</strong> {{ serie.channel }}</p>
+        <p><strong>Rating:</strong> {{ serie.rating }}/10</p>
+      </div>
+    }
+  </div>
+</section>

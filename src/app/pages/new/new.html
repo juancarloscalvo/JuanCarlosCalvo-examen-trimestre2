@@ -1,0 +1,35 @@
+<section class="new">
+  <h2>Crear Nueva Serie</h2>
+
+  @if (mensaje()) {
+    <div class="mensaje-exito">{{ mensaje() }}</div>
+  }
+
+  <form [formGroup]="serieForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Titulo</label>
+      <input id="title" type="text" formControlName="title" />
+      @if (serieForm.get('title')?.invalid && serieForm.get('title')?.touched) {
+        <small class="error">El titulo es obligatorio y debe tener al menos 3 caracteres.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="channel">Canal</label>
+      <input id="channel" type="text" formControlName="channel" />
+      @if (serieForm.get('channel')?.invalid && serieForm.get('channel')?.touched) {
+        <small class="error">El canal es obligatorio.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating (0-10)</label>
+      <input id="rating" type="number" formControlName="rating" min="0" max="10" />
+      @if (serieForm.get('rating')?.invalid && serieForm.get('rating')?.touched) {
+        <small class="error">El rating es obligatorio y debe estar entre 0 y 10.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="serieForm.invalid">Crear Serie</button>
+  </form>
+</section>
