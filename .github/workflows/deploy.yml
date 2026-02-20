@@ -25,13 +25,13 @@ jobs:
           ls -la dist/*/browser || true
       # SSH .
       - name: Deploy to VPS via SSH
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          source: "dist/*"
-          target: ${{ secrets.VPS_PATH }}
-          strip_components: 1
-          debug: true
+          script: |
+            echo "Conexión SSH exitosa"
+            whoami
+            ls -la /var/www/html/examen
