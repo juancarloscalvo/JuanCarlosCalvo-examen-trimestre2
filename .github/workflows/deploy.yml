@@ -24,14 +24,13 @@ jobs:
           ls -la dist/* || true
           ls -la dist/*/browser || true
       # SSH .
-      - name: Deploy to VPS via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            echo "Conexión SSH exitosa"
-            whoami
-            ls -la /var/www/html/examen
+          switches: -avzr --delete
+          path: dist/posts-get/browser/
+          remote_path: ${{ secrets.VPS_PATH }}
+          remote_host: ${{ secrets.VPS_HOST }}
+          remote_port: ${{ secrets.VPS_PORT }}
+          remote_user: ${{ secrets.VPS_USER }}
+          remote_key: ${{ secrets.VPS_SSH_KEY }}
