@@ -28,7 +28,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avzr --delete
-          path: dist/JuanCarlosCalvo-examen-trimestre2/
+          path: dist/JuanCarlosCalvo-examen-trimestre2/browser/
           remote_path: ${{ secrets.VPS_PATH }}
           remote_host: ${{ secrets.VPS_HOST }}
           remote_port: ${{ secrets.VPS_PORT }}
