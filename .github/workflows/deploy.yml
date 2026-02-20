@@ -34,3 +34,4 @@ jobs:
           source: "dist/*"
           target: ${{ secrets.VPS_PATH }}
           strip_components: 1
+          debug: true
