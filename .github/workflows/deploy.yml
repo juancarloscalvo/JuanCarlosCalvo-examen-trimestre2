@@ -23,7 +23,7 @@ jobs:
           ls -la dist
           ls -la dist/* || true
           ls -la dist/*/browser || true
-
+      # SSH
       - name: Deploy to VPS via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
